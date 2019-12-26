@@ -1,6 +1,9 @@
-module api
-  module V1
-    class CompanyController < ApplicationController
+class CompanysController < ApplicationController
+      def index
+        company = Company.all()
+	render json: {status: 'SUCCESS', data: company}, status: :ok
+      end
+
       def show
         company = Company.find(params[:id]);
         render json: {status: 'SUCCESS', data: company}, status: :ok
@@ -21,6 +24,5 @@ module api
       def company_params
         params.permit(:name)
       end
-    end
-  end
 end
+
