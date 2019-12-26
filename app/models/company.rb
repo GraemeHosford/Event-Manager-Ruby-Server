@@ -1,3 +1,3 @@
 class Company < ApplicationRecord
-  validate :title, presence: true
+  validates :name, presence: true
 end
