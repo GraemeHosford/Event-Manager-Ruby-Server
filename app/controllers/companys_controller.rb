@@ -13,7 +13,7 @@ class CompanysController < ApplicationController
         company = Company.new(company_params)
         
         if company.save
-          render json: {status: 'SUCCESS', data: company}, status: :ok
+          render json: {status: 'SUCCESS', id: company[:id], name: company[:name]}, status: :ok
         else
           render json: {status: 'ERROR', data: company.errors}, status: :unprocessable_entity
         end
