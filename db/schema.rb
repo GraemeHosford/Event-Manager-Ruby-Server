@@ -12,10 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_12_26_162216) do
 
-  create_table "Company", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "name", limit: 50, null: false
-  end
-
   create_table "companies", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
