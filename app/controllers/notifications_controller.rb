@@ -3,10 +3,8 @@ class NotificationsController < ApplicationController
   require "json"
   require "net/http"
   
-  def create
+  def create(*emails)
     firestore = Google::Cloud::Firestore.new(project_id: ENV["FIRESTORE_PROJECT"])
-    
-    emails = params[:emails]
     
     emails.each do |e|
       user = firestore.col('users').doc(e).get
