@@ -1,11 +1,12 @@
 class NotificationsController < ApplicationController
-  layout false
   require "google/cloud/firestore"
   require "json"
   require "net/http"
   
-  def send_invite_notification(emails)
+  def create
     firestore = Google::Cloud::Firestore.new(project_id: ENV["FIRESTORE_PROJECT"])
+    
+    emails = params[:emails]
     
     emails.each do |e|
       user = firestore.col('users').doc(e).get
