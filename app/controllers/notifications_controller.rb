@@ -3,15 +3,17 @@ class NotificationsController < ApplicationController
   require "json"
   require "net/http"
   
-  def create(*emails)
-    firestore = Google::Cloud::Firestore.new(project_id: ENV["FIRESTORE_PROJECT"])
-    
+  def create
+    firestore = Google::Cloud::Firestore.new(project_id: ENV['FIRESTORE_PROJECT'], credentials: ENV['GOOGLE_APPLICATION_CREDENTIALS'])
+
+    emails = Array[params[:emails]]
+
     emails.each do |e|
       user = firestore.col('users').doc(e).get
       
-      messaging_token = user.data[:messaging_token]
+      messaging_token = user.get('messaging_token')
       
-      if !token.nil?
+      if token != null
         post_url = URI.parse("https://fcm.googleapis.com/fcm/send")
         request = Net::HTTP::Post.new(post_url)
         

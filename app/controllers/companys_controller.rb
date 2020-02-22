@@ -1,11 +1,11 @@
 class CompanysController < ApplicationController
       def index
-        company = Company.all()
+        company = Company.all
 	render json: {status: 'SUCCESS', data: company}, status: :ok
       end
 
       def show
-        company = Company.find(params[:id]);
+        company = Company.find(params[:id])
         render json: {status: 'SUCCESS', data: company}, status: :ok
       end
 
